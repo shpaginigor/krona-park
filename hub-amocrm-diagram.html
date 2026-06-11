@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Хаб AmoCRM — Крона Парк | Блок-схема</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #080f1e;
+  color: #e2e8f0;
+  padding: 48px 24px 80px;
+  min-width: 1100px;
+}
+
+/* ─── HEADER ─────────────────────────────────────────── */
+.page-title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+.page-sub {
+  text-align: center;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 56px;
+  letter-spacing: 0.3px;
+}
+
+.wrapper {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+/* ─── LAYER BLOCK ────────────────────────────────────── */
+.layer-block {
+  margin-bottom: 0;
+}
+
+.layer-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.layer-label .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.layer-label .text {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #475569;
+}
+
+.cards {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ─── CARD ────────────────────────────────────────────── */
+.card {
+  border-radius: 12px;
+  padding: 16px 18px;
+  flex: 1;
+  min-width: 150px;
+}
+.card h4 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+.card ul li {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.7;
+  padding-left: 14px;
+  position: relative;
+}
+.card ul li::before {
+  content: '·';
+  position: absolute;
+  left: 3px;
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* source */
+.c-src { background: #042312; border: 1px solid #14532d; }
+.c-src h4 { color: #4ade80; }
+
+/* hub */
+.c-hub { background: #071230; border: 1px solid #1e3a8a; }
+.c-hub h4 { color: #60a5fa; }
+
+/* amo */
+.c-amo { background: #180a00; border: 1px solid #9a3412; }
+.c-amo h4 { color: #fb923c; }
+
+/* pipeline */
+.c-pip { background: #130824; border: 1px solid #5b21b6; }
+.c-pip h4 { color: #a78bfa; }
+
+/* notify */
+.c-ntf { background: #160010; border: 1px solid #9d174d; }
+.c-ntf h4 { color: #f472b6; }
+
+/* analytics */
+.c-ana { background: #001618; border: 1px solid #155e75; }
+.c-ana h4 { color: #22d3ee; }
+
+/* ─── ARROW ────────────────────────────────────────────── */
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 52px;
+  flex-direction: column;
+  gap: 0;
+}
+.arrow-line {
+  width: 2px;
+  height: 28px;
+  background: linear-gradient(to bottom, #1e293b, #334155);
+}
+.arrow-head {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid #334155;
+}
+
+/* ─── PIPELINE FLOW ────────────────────────────────────── */
+.pipeline-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.p-stage {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.p-box {
+  padding: 14px 18px;
+  border-radius: 10px;
+  min-width: 130px;
+  text-align: center;
+}
+.p-num {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #6d28d9;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+.p-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c4b5fd;
+  line-height: 1.3;
+}
+.p-desc {
+  font-size: 10px;
+  color: #64748b;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+.p-arrow {
+  font-size: 22px;
+  color: #3b1d6e;
+  padding: 0 6px;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* ─── SECTION DIVIDER ──────────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid #0f172a;
+  margin: 48px 0 36px;
+}
+
+/* ─── DETAIL SECTION ───────────────────────────────────── */
+.detail-block {
+  background: #0d1525;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.detail-block h3 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #475569;
+  margin-bottom: 20px;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 10px;
+}
+.d-item {
+  background: #080f1e;
+  border-radius: 8px;
+  padding: 14px 16px;
+  border: 1px solid #1e293b;
+}
+.d-item .d-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #475569;
+  margin-bottom: 7px;
+}
+.d-item .d-val {
+  font-size: 11.5px;
+  color: #94a3b8;
+  line-height: 1.65;
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+}
+.d-item .d-val b {
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+/* ─── BADGE ─────────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-left: 6px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.b-post { background: #052e16; color: #4ade80; border: 1px solid #14532d; }
+.b-get  { background: #0c1f4a; color: #60a5fa; border: 1px solid #1e3a8a; }
+.b-ptch { background: #3b1200; color: #fbbf24; border: 1px solid #92400e; }
+.b-wh   { background: #2e003e; color: #d8b4fe; border: 1px solid #5b21b6; }
+
+/* ─── FLOW LEGEND ───────────────────────────────────────── */
+.legend {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  justify-content: center;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: #64748b;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="page-title">Хаб AmoCRM — Крона Парк</div>
+  <div class="page-sub">Полная блок-схема интеграции: источники лидов → хаб → AmoCRM → воронка продаж → уведомления → аналитика</div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#4ade80"></div>Источники лидов</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>Хаб (обработка)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#fb923c"></div>AmoCRM API</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div>Воронка продаж</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f472b6"></div>Уведомления / Автоматизация</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#22d3ee"></div>Аналитика</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       СЛОЙ 1 — ИСТОЧНИКИ ЛИДОВ
+  ══════════════════════════════════════════════════════════ -->
+  <div class="layer-block">
+    <div class="layer-label">
+      <div class="dot" style="background:#4ade80"></div>
+      <div class="text">Слой 1 — Источники лидов (входящие каналы)</div>
+    </div>
+    <div class="cards">
+
+      <div class="card c-src">
+        <h4>🌐 Лендинг Крона-Парк</h4>
+        <ul>
+          <li>HTML-форма, POST /api/lead</li>
+          <li>Поля: имя, телефон, email</li>
+          <li>UTM из URL (?utm_source=…)</li>
+          <li>Referrer / страница захвата</li>
+          <li>reCAPTCHA / honeypot защита</li>
+          <li>IP, User-Agent, время</li>
+        </ul>
+      </div>
+
+      <div class="card c-src">
+        <h4>🏠 Avito.ru</h4>
+        <ul>
+          <li>avito-telegram-bot (Python)</li>
+          <li>Мониторинг входящих в Avito</li>
+          <li>Парсинг: имя, телефон, текст</li>
+          <li>Webhook → хаб (POST)</li>
+          <li>Привязка к объявлению</li>
+          <li>Отслеживание показов</li>
+        </ul>
+      </div>
+
+      <div class="card c-src">
+        <h4>📞 Входящий звонок</h4>
+        <ul>
+          <li>Виртуальная АТС (Манго / Zadarma)</li>
+          <li>Callback-виджет на LP</li>
+          <li>Webhook при вызове → хаб</li>
+          <li>Определение номера (caller ID)</li>
+          <li>Запись разговора → URL</li>
+          <li>Пропущенные → перезвон</li>
+        </ul>
+      </div>
+
+      <div class="card c-src">
+        <h4>💬 Telegram-бот</h4>
+        <ul>
+          <li>@kronaParkBot команда /start</li>
+          <li>Кнопки: «Узнать цену», «Записаться»</li>
+          <li>Сбор: имя, телефон, вопрос</li>
+          <li>chat_id для обратной связи</li>
+          <li>Вебхук Telegram → хаб</li>
+          <li>Пересылка медиа / документов</li>
+        </ul>
+      </div>
+
+      <div class="card c-src">
+        <h4>📱 WhatsApp / Viber</h4>
+        <ul>
+          <li>WazzUp или GreenAPI</li>
+          <li>Входящее сообщение → вебхук</li>
+          <li>Парсинг текста запроса</li>
+          <li>Автоответ-визитка менеджера</li>
+          <li>Сохранение диалога в примечание</li>
+        </ul>
+      </div>
+
+      <div class="card c-src">
+        <h4>👤 Ручной ввод</h4>
+        <ul>
+          <li>Менеджер напрямую в АМО</li>
+          <li>Выставка / оффлайн-событие</li>
+          <li>Визитка → сделка вручную</li>
+          <li>Рекомендация (тег «сарафан»)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="arrow"><div class="arrow-line"></div><div class="arrow-head"></div></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       СЛОЙ 2 — ХАБ
+  ══════════════════════════════════════════════════════════ -->
+  <div class="layer-block">
+    <div class="layer-label">
+      <div class="dot" style="background:#60a5fa"></div>
+      <div class="text">Слой 2 — Хаб (Integration Hub) — центральный обработчик</div>
+    </div>
+    <div class="cards">
+
+      <div class="card c-hub">
+        <h4>📥 Webhook Receiver</h4>
+        <ul>
+          <li>HTTPS endpoint (nginx + TLS)</li>
+          <li>Проверка подписи (HMAC-SHA256)</li>
+          <li>Помещение в очередь (Redis)</li>
+          <li>Rate limiting (IP + source)</li>
+          <li>Дедлайн ответа: 200ms</li>
+          <li>Логирование raw-запроса</li>
+          <li>Retry при сбое обработчика</li>
+        </ul>
+      </div>
+
+      <div class="card c-hub">
+        <h4>🔍 Парсинг и валидация</h4>
+        <ul>
+          <li>Извлечение UTM (source / medium / campaign / term / content)</li>
+          <li>Нормализация телефона → +7XXXXXXXXXX</li>
+          <li>Очистка имени (спецсимволы, регистр)</li>
+          <li>Валидация email (RFC-5322)</li>
+          <li>Определение источника по домену реферрера</li>
+          <li>Время суток → рабочие / нерабочие часы</li>
+        </ul>
+      </div>
+
+      <div class="card c-hub">
+        <h4>🔄 Дедупликация</h4>
+        <ul>
+          <li>GET /contacts?query={phone} в АМО</li>
+          <li>GET /contacts?query={email} в АМО</li>
+          <li>Временное окно дубля: 24 часа</li>
+          <li>Дубль → обновить сделку vs создать новую</li>
+          <li>Merge: добавить примечание к старой сделке</li>
+          <li>Счётчик касаний по лиду</li>
+        </ul>
+      </div>
+
+      <div class="card c-hub">
+        <h4>🗺️ Маппинг данных</h4>
+        <ul>
+          <li>Источник → тег АМО (avito / lp / звонок / tg / wa)</li>
+          <li>UTM campaign → название рекламной кампании</li>
+          <li>Время → менеджер по расписанию</li>
+          <li>Объект интереса → custom field «Участок»</li>
+          <li>Регион → менеджер по территории</li>
+          <li>Бюджет из текста → поле «Бюджет»</li>
+        </ul>
+      </div>
+
+      <div class="card c-hub">
+        <h4>⚙️ Бизнес-логика</h4>
+        <ul>
+          <li>Рабочие часы: 09:00–20:00 МСК</li>
+          <li>Нерабочие → очередь + SMS «Перезвоним в 9:00»</li>
+          <li>Round-robin по свободным менеджерам</li>
+          <li>Лид-скоринг: телефон > email > анонимный</li>
+          <li>Эскалация если задача не взята > 5 мин</li>
+          <li>Эскалация на РОПа если > 30 мин</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="arrow"><div class="arrow-line"></div><div class="arrow-head"></div></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       СЛОЙ 3 — AMOCRM API
+  ══════════════════════════════════════════════════════════ -->
+  <div class="layer-block">
+    <div class="layer-label">
+      <div class="dot" style="background:#fb923c"></div>
+      <div class="text">Слой 3 — AmoCRM API v4 — создание сущностей</div>
+    </div>
+    <div class="cards">
+
+      <div class="card c-amo">
+        <h4>👤 Контакт <span class="badge b-post">POST</span></h4>
+        <ul>
+          <li>/api/v4/contacts</li>
+          <li>name: «Имя Фамилия»</li>
+          <li>phone: +7XXXXXXXXXX (тип WORK)</li>
+          <li>email: адрес (тип WORK)</li>
+          <li>tags: [источник, utm_source]</li>
+          <li>custom_fields: telegram_chat_id</li>
+          <li>responsible_user_id: менеджер</li>
+        </ul>
+      </div>
+
+      <div class="card c-amo">
+        <h4>📋 Сделка <span class="badge b-post">POST</span></h4>
+        <ul>
+          <li>/api/v4/leads</li>
+          <li>name: «Крона Парк — [имя]»</li>
+          <li>pipeline_id: ID воронки</li>
+          <li>status_id: «Новый лид» (этап 1)</li>
+          <li>price: бюджет из запроса</li>
+          <li>responsible_user_id: менеджер</li>
+          <li>created_at: UNIX timestamp</li>
+        </ul>
+      </div>
+
+      <div class="card c-amo">
+        <h4>🏷️ Поля сделки <span class="badge b-ptch">PATCH</span></h4>
+        <ul>
+          <li>/api/v4/leads/{id}</li>
+          <li>UTM Source / Medium / Campaign</li>
+          <li>Источник лида (list-поле)</li>
+          <li>Объект интереса (text)</li>
+          <li>Площадь участка (int)</li>
+          <li>Страница захвата (url)</li>
+          <li>Telegram Chat ID (int)</li>
+        </ul>
+      </div>
+
+      <div class="card c-amo">
+        <h4>🔗 Привязка контакта <span class="badge b-post">POST</span></h4>
+        <ul>
+          <li>/api/v4/leads/{id}/links</li>
+          <li>to_entity_type: «contacts»</li>
+          <li>to_entity_id: contact_id</li>
+          <li>metadata.main_contact: true</li>
+          <li>Один контакт → много сделок</li>
+        </ul>
+      </div>
+
+      <div class="card c-amo">
+        <h4>✅ Задача <span class="badge b-post">POST</span></h4>
+        <ul>
+          <li>/api/v4/tasks</li>
+          <li>task_type_id: 1 (Позвонить)</li>
+          <li>text: «Перезвонить новому лиду»</li>
+          <li>entity_type: «leads»</li>
+          <li>entity_id: lead_id</li>
+          <li>complete_till: now() + 5 минут</li>
+          <li>responsible_user_id: менеджер</li>
+        </ul>
+      </div>
+
+      <div class="card c-amo">
+        <h4>📝 Примечание <span class="badge b-post">POST</span></h4>
+        <ul>
+          <li>/api/v4/leads/{id}/notes</li>
+          <li>note_type: «common»</li>
+          <li>Полный текст запроса клиента</li>
+          <li>IP-адрес, UserAgent</li>
+          <li>URL страницы захвата</li>
+          <li>Все UTM-параметры</li>
+          <li>Время создания</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="arrow"><div class="arrow-line"></div><div class="arrow-head"></div></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       СЛОЙ 4 — ВОРОНКА
+  ══════════════════════════════════════════════════════════ -->
+  <div class="layer-block">
+    <div class="layer-label">
+      <div class="dot" style="background:#a78bfa"></div>
+      <div class="text">Слой 4 — Воронка продаж «Крона Парк — Участки»</div>
+    </div>
+
+    <div class="pipeline-row">
+
+      <div class="p-stage">
+        <div class="p-box" style="background:#0d0624;border:1px solid #3b1d6e">
+          <div class="p-num">Этап 1</div>
+          <div class="p-name">Новый лид</div>
+          <div class="p-desc">Авто-создание<br>хабом</div>
+        </div>
+      </div>
+      <div class="p-arrow">→</div>
+
+      <div class="p-stage">
+        <div class="p-box" style="background:#0f0828;border:1px solid #4c1d95">
+          <div class="p-num">Этап 2</div>
+          <div class="p-name">Взят в работу</div>
+          <div class="p-desc">Менеджер<br>принял задачу</div>
+        </div>
+      </div>
+      <div class="p-arrow">→</div>
+
+      <div class="p-stage">
+        <div class="p-box" style="background:#120930;border:1px solid #5b21b6">
+          <div class="p-num">Этап 3</div>
+          <div class="p-name">Квалификация</div>
+          <div class="p-desc">Звонок, выявление<br>потребности</div>
+        </div>
+      </div>
+      <div class="p-arrow">→</div>
+
+      <div class="p-stage">
+        <div class="p-box" style="background:#140a38;border:1px solid #6d28d9">
+          <div class="p-num">Этап 4</div>
+          <div class="p-name">Показ участка</div>
+          <div class="p-desc">Выезд на объект<br>назначен</div>
+        </div>
+      </div>
+      <div class="p-arrow">→</div>
+
+      <div class="p-stage">
+        <div class="p-box" style="background:#160b3e;border:1px solid #7c3aed">
+          <div class="p-num">Этап 5</div>
+          <div class="p-name">КП отправлено</div>
+          <div class="p-desc">Коммерческое<br>предложение</div>
+        </div>
+      </div>
+      <div class="p-arrow">→</div>
+
+      <div class="p-stage">
+        <div class="p-box" style="background:#180d46;border:1px solid #8b5cf6">
+          <div class="p-num">Этап 6</div>
+          <div class="p-name">Договор</div>
+          <div class="p-desc">Согласование<br>и подписание ДКП</div>
+        </div>
+      </div>
+      <div class="p-arrow">→</div>
+
+      <div class="p-stage">
+        <div class="p-box" style="background:#042010;border:1px solid #15803d">
+          <div class="p-num">✓ УСПЕХ</div>
+          <div class="p-name">Сделка закрыта</div>
+          <div class="p-desc">Участок продан<br>Оплата получена</div>
+        </div>
+      </div>
+      <div class="p-arrow" style="color:#450a0a">→</div>
+
+      <div class="p-stage">
+        <div class="p-box" style="background:#1c0303;border:1px solid #b91c1c">
+          <div class="p-num">✗ ОТКАЗ</div>
+          <div class="p-name">Нереализовано</div>
+          <div class="p-desc">Причина зафиксирована<br>→ реактивация +30д</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="arrow"><div class="arrow-line"></div><div class="arrow-head"></div></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       СЛОЙ 5 — УВЕДОМЛЕНИЯ / АВТОМАТИЗАЦИЯ
+  ══════════════════════════════════════════════════════════ -->
+  <div class="layer-block">
+    <div class="layer-label">
+      <div class="dot" style="background:#f472b6"></div>
+      <div class="text">Слой 5 — Уведомления и автоматизация (триггеры от АМО → хаб)</div>
+    </div>
+    <div class="cards">
+
+      <div class="card c-ntf">
+        <h4>🤖 Telegram → Менеджер</h4>
+        <ul>
+          <li>Триггер: новый лид (мгновенно)</li>
+          <li>Сообщение: имя, телефон, источник</li>
+          <li>Inline-кнопки: «Принять» / «Занят»</li>
+          <li>Ссылка на сделку в АМО</li>
+          <li>Триггер: просрочена задача > 5 мин</li>
+          <li>Эскалация → РОП при > 30 мин</li>
+        </ul>
+      </div>
+
+      <div class="card c-ntf">
+        <h4>📲 WhatsApp / SMS → Клиент</h4>
+        <ul>
+          <li>Триггер: получение заявки → подтверждение</li>
+          <li>«Ваша заявка принята, ждите звонка»</li>
+          <li>Триггер: этап «Показ участка»</li>
+          <li>Адрес объекта + ссылка на маршрут</li>
+          <li>Напоминание за 2 часа до показа</li>
+          <li>Контакт менеджера (имя, тел)</li>
+        </ul>
+      </div>
+
+      <div class="card c-ntf">
+        <h4>📄 Генерация ДКП</h4>
+        <ul>
+          <li>Триггер: этап «Договор»</li>
+          <li>Интеграция с 24filldoc (Python)</li>
+          <li>Подтягивание данных из сделки АМО</li>
+          <li>Авто-заполнение DOCX шаблона</li>
+          <li>Конвертация в PDF</li>
+          <li>Отправка клиенту + прикрепление к сделке</li>
+        </ul>
+      </div>
+
+      <div class="card c-ntf">
+        <h4>🔁 Реактивация лидов</h4>
+        <ul>
+          <li>Триггер: этап «Нереализовано»</li>
+          <li>Задача реактивации через 30 дней</li>
+          <li>SMS/WhatsApp: «Новые предложения»</li>
+          <li>Повторный прогрев через 60 дней</li>
+          <li>Сегментация по причине отказа</li>
+        </ul>
+      </div>
+
+      <div class="card c-ntf">
+        <h4>📊 Ежедневный отчёт</h4>
+        <ul>
+          <li>Каждый день в 18:00 МСК</li>
+          <li>Telegram → менеджеры + РОП</li>
+          <li>Новые / в работе / закрыты / отказы</li>
+          <li>Конверсия по источникам за день</li>
+          <li>Просроченные задачи</li>
+          <li>KPI менеджеров (звонки, задачи)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="arrow"><div class="arrow-line"></div><div class="arrow-head"></div></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       СЛОЙ 6 — АНАЛИТИКА
+  ══════════════════════════════════════════════════════════ -->
+  <div class="layer-block">
+    <div class="layer-label">
+      <div class="dot" style="background:#22d3ee"></div>
+      <div class="text">Слой 6 — Аналитика и метрики</div>
+    </div>
+    <div class="cards">
+
+      <div class="card c-ana">
+        <h4>📈 UTM-аналитика</h4>
+        <ul>
+          <li>CPL по источнику (стоимость лида)</li>
+          <li>Конверсия LP по кампании</li>
+          <li>ROAS на рекламные каналы</li>
+          <li>Avito vs Google vs Yandex</li>
+        </ul>
+      </div>
+
+      <div class="card c-ana">
+        <h4>🔢 Воронка</h4>
+        <ul>
+          <li>Конверсия на каждом этапе</li>
+          <li>Среднее время жизни в этапе</li>
+          <li>Dropout-анализ (где теряем)</li>
+          <li>Время от заявки до звонка</li>
+        </ul>
+      </div>
+
+      <div class="card c-ana">
+        <h4>👥 KPI команды</h4>
+        <ul>
+          <li>Скорость первого отклика</li>
+          <li>Закрытые сделки / менеджер</li>
+          <li>Просроченные задачи</li>
+          <li>NPS клиентов (отзывы)</li>
+        </ul>
+      </div>
+
+      <div class="card c-ana">
+        <h4>🗂️ Сегментация</h4>
+        <ul>
+          <li>Горячий / тёплый / холодный лид</li>
+          <li>Бюджет клиента (до 1 млн / 1-3 / 3+)</li>
+          <li>Объект интереса (соток / дом)</li>
+          <li>Гео-регион запроса</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       ДЕТАЛЬНЫЕ ТАБЛИЦЫ
+  ══════════════════════════════════════════════════════════ -->
+  <hr class="divider">
+
+  <!-- API-вызовы -->
+  <div class="detail-block">
+    <h3>🔌 Полный список API-вызовов Хаб → AmoCRM (последовательность)</h3>
+    <div class="detail-grid">
+
+      <div class="d-item">
+        <div class="d-label">Шаг 1 — Поиск дубля по телефону <span class="badge b-get">GET</span></div>
+        <div class="d-val">
+          GET /api/v4/contacts?query={phone}&with=leads<br>
+          <b>→ 404</b>: контакт не найден, создаём<br>
+          <b>→ 200</b>: контакт есть, смотрим сделки
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 2 — Поиск дубля по email <span class="badge b-get">GET</span></div>
+        <div class="d-val">
+          GET /api/v4/contacts?query={email}&with=leads<br>
+          Выполняется параллельно с шагом 1<br>
+          <b>→</b> Объединяем результаты
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 3 — Создание контакта <span class="badge b-post">POST</span></div>
+        <div class="d-val">
+          POST /api/v4/contacts<br>
+          Body: [{name, first_name, last_name,<br>
+          custom_fields_values: [{phone}, {email}],<br>
+          tags: [{name: source}]}]
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 4 — Создание сделки <span class="badge b-post">POST</span></div>
+        <div class="d-val">
+          POST /api/v4/leads<br>
+          Body: [{name: "Крона Парк — {name}",<br>
+          pipeline_id, status_id,<br>
+          responsible_user_id, price}]
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 5 — Custom fields сделки <span class="badge b-ptch">PATCH</span></div>
+        <div class="d-val">
+          PATCH /api/v4/leads/{lead_id}<br>
+          custom_fields_values: [{utm_source},<br>
+          {utm_medium}, {utm_campaign},<br>
+          {source}, {object}, {budget}, {page}]
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 6 — Привязка контакта → сделка <span class="badge b-post">POST</span></div>
+        <div class="d-val">
+          POST /api/v4/leads/{lead_id}/links<br>
+          [{to_entity_type: "contacts",<br>
+          to_entity_id: {contact_id},<br>
+          metadata: {main_contact: true}}]
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 7 — Задача «Позвонить» <span class="badge b-post">POST</span></div>
+        <div class="d-val">
+          POST /api/v4/tasks<br>
+          [{task_type_id: 1, text: "Позвонить новому лиду",<br>
+          entity_type: "leads", entity_id: lead_id,<br>
+          complete_till: now + 300 (5 мин)}]
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 8 — Примечание с деталями <span class="badge b-post">POST</span></div>
+        <div class="d-val">
+          POST /api/v4/leads/{lead_id}/notes<br>
+          [{note_type: "common",<br>
+          params: {text: "Источник: {source}\nUTM: ...\nIP: ...\nСтраница: ..."}}]
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 9 — Webhook АМО → Хаб <span class="badge b-wh">WEBHOOK</span></div>
+        <div class="d-val">
+          POST /webhook/amocrm (исходящий из АМО)<br>
+          События: leads[status] — смена этапа<br>
+          leads[update] — изменение поля<br>
+          tasks[add/complete] — задачи
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 10 — Обновление статуса сделки <span class="badge b-ptch">PATCH</span></div>
+        <div class="d-val">
+          PATCH /api/v4/leads/{id}<br>
+          [{status_id: {new_stage_id},<br>
+          responsible_user_id: {manager_id}}]<br>
+          <b>→</b> Вызывается хабом при обработке событий
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Custom Fields -->
+  <div class="detail-block">
+    <h3>🏷️ Custom Fields сделки в AmoCRM — полный список</h3>
+    <div class="detail-grid">
+
+      <div class="d-item">
+        <div class="d-label">UTM Source</div>
+        <div class="d-val">Тип: список<br>Значения: google / yandex / avito / telegram / vk / direct / organic / referral</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">UTM Medium</div>
+        <div class="d-val">Тип: текст<br>Значения: cpc / cpm / social / email / referral / none</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">UTM Campaign</div>
+        <div class="d-val">Тип: текст<br>Пример: krona-park-2026 / land-summer / retargeting</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">UTM Content</div>
+        <div class="d-val">Тип: текст<br>Пример: banner-top / cta-form / sidebar</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Источник лида</div>
+        <div class="d-val">Тип: список<br>Значения: LP форма / Avito / Входящий звонок / Telegram / WhatsApp / Ручной ввод</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Объект интереса</div>
+        <div class="d-val">Тип: список<br>Значения: Участок 6 сот / 8 сот / 10 сот / 12 сот / Дом под ключ / Не определено</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Бюджет клиента</div>
+        <div class="d-val">Тип: список<br>Значения: до 1 млн / 1–3 млн / 3–5 млн / 5–10 млн / от 10 млн</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Страница захвата</div>
+        <div class="d-val">Тип: URL<br>Пример: https://krona-park.ru/?utm_source=avito&utm_campaign=...</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Telegram Chat ID</div>
+        <div class="d-val">Тип: число<br>Используется для обратных уведомлений клиенту через бота</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Дата первого касания</div>
+        <div class="d-val">Тип: дата-время<br>Автозаполняется хабом при создании лида</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Номер объявления Avito</div>
+        <div class="d-val">Тип: число<br>ID объявления на Avito.ru — для отслеживания источника</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Причина отказа</div>
+        <div class="d-val">Тип: список<br>Дорого / Не подошёл объект / Уже купил / Не выходит на связь / Другое</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Триггеры автоматизации -->
+  <div class="detail-block" style="margin-bottom:0">
+    <h3>⚡ Триггеры автоматизации (Webhook АМО → Хаб → Действие)</h3>
+    <div class="detail-grid">
+
+      <div class="d-item">
+        <div class="d-label">Лид создан (любой источник)</div>
+        <div class="d-val">
+          → Telegram-уведомление менеджеру (немедленно)<br>
+          → SMS клиенту: «Заявка принята, ждите звонка»<br>
+          → Задача «Позвонить» через 5 мин
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Задача не взята > 5 мин</div>
+        <div class="d-val">
+          → Повторный Telegram менеджеру<br>
+          → Уведомление РОПу<br>
+          → Перевод на дежурного менеджера
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Задача не взята > 30 мин</div>
+        <div class="d-val">
+          → Уведомление руководителю<br>
+          → Автоназначение на свободного<br>
+          → Сделка отмечена «Требует внимания»
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Этап → «Показ участка»</div>
+        <div class="d-val">
+          → WhatsApp клиенту: адрес + маршрут<br>
+          → Напоминание за 2 часа до показа<br>
+          → Напоминание менеджеру за 30 мин
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Этап → «КП отправлено»</div>
+        <div class="d-val">
+          → Задача «Уточнить решение» через 2 дня<br>
+          → Email с PDF-презентацией объекта<br>
+          → Задача повторного касания через 5 дней
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Этап → «Договор»</div>
+        <div class="d-val">
+          → Запустить 24filldoc: генерация ДКП<br>
+          → Прикрепить PDF к сделке в АМО<br>
+          → Уведомить юриста / бухгалтерию<br>
+          → WhatsApp клиенту с договором
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Этап → «Успешно закрыто»</div>
+        <div class="d-val">
+          → WhatsApp клиенту: поздравление<br>
+          → Задача «Запросить отзыв» через 7 дней<br>
+          → Обновление статистики продаж
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Этап → «Нереализовано»</div>
+        <div class="d-val">
+          → Зафиксировать причину отказа<br>
+          → Задача реактивации через 30 дней<br>
+          → Сегментация в базе «Холодные лиды»
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Лид в нерабочие часы</div>
+        <div class="d-val">
+          → Помещение в очередь<br>
+          → SMS клиенту: «Свяжемся в 9:00»<br>
+          → Задача менеджеру на 09:00 следующего дня
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Ежедневный отчёт (18:00)</div>
+        <div class="d-val">
+          → Telegram всем менеджерам + РОПу<br>
+          → Новые / В работе / Закрыты / Отказы<br>
+          → Конверсия по источникам за день<br>
+          → Список просроченных задач
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
