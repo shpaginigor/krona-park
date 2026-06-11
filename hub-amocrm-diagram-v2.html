@@ -535,7 +535,7 @@ body {
         <div class="p-box p-star" style="border:2px solid #a855f7;background:#1a0940">
           <div class="p-num" style="color:#c084fc">★ ЦЕНТР</div>
           <div class="p-name" style="color:#e9d5ff">Показ состоялся</div>
-          <div class="p-desc">80% решений<br>принимается здесь</div>
+          <div class="p-desc">Посмотрел →<br>выбрал участок</div>
         </div>
       </div>
       <div class="p-arrow">→</div>
@@ -543,8 +543,8 @@ body {
       <div class="p-stage">
         <div class="p-box" style="background:#160b3e;border:1px solid #7c3aed">
           <div class="p-num">Этап 5</div>
-          <div class="p-name">Бронь / задаток</div>
-          <div class="p-desc">ПДКП или<br>соглашение</div>
+          <div class="p-name">Бронь · Принимает решение</div>
+          <div class="p-desc">Участок зарезервирован<br>на 2 дня — обдумать</div>
         </div>
       </div>
       <div class="p-arrow">→</div>
@@ -552,8 +552,8 @@ body {
       <div class="p-stage">
         <div class="p-box" style="background:#180d46;border:1px solid #8b5cf6">
           <div class="p-num">Этап 6</div>
-          <div class="p-name">Договор ДКП</div>
-          <div class="p-desc">Подписание<br>основного договора</div>
+          <div class="p-name">Оформление документов</div>
+          <div class="p-desc">Подготовка ДКП<br>(24filldoc) к МФЦ</div>
         </div>
       </div>
       <div class="p-arrow">→</div>
@@ -561,8 +561,8 @@ body {
       <div class="p-stage">
         <div class="p-box" style="background:#1a0f4a;border:1px solid #9d5ffd">
           <div class="p-num">Этап 7</div>
-          <div class="p-name">Оплата / рег.</div>
-          <div class="p-desc">Деньги + Росреестр<br>/ МФЦ</div>
+          <div class="p-name">Сделка в МФЦ</div>
+          <div class="p-desc">Договор + регистрация<br>+ расчёт — один визит</div>
         </div>
       </div>
       <div class="p-arrow">→</div>
@@ -633,24 +633,36 @@ body {
       </div>
 
       <div class="card c-ntf">
-        <h4>📋 Пост-показ follow-up</h4>
+        <h4>⏳ Бронь — таймер 2 дня <span class="solo-tag">v2</span></h4>
         <ul>
-          <li>Триггер: этап «Показ состоялся»</li>
-          <li>День +1: «Как впечатления от участка?»</li>
-          <li>День +3 (нет ответа): «Остались вопросы?»</li>
-          <li>Задача оператору: уточнить решение</li>
+          <li>Триггер: этап «Бронь · Принимает решение»</li>
+          <li class="highlight">Клиенту: «Участок №X за вами до {дата}»</li>
+          <li>День 2 утром: «Срок брони истекает сегодня»</li>
+          <li>Истекла без решения → уведомление оператору</li>
+          <li>Решение принято → этап «Оформление документов»</li>
         </ul>
       </div>
 
       <div class="card c-ntf">
-        <h4>📄 24filldoc — ПДКП + ДКП <span class="solo-tag">v2</span></h4>
+        <h4>📄 24filldoc — подготовка ДКП <span class="solo-tag">v2</span></h4>
         <ul>
-          <li class="highlight">Триггер: «Бронь / задаток» → ПДКП</li>
-          <li class="highlight">Триггер: «Договор ДКП» → основной договор</li>
-          <li>Данные из сделки АМО → шаблон</li>
+          <li class="highlight">Триггер: этап «Оформление документов»</li>
+          <li>Данные из сделки АМО → шаблон ДКП</li>
           <li>DOCX → PDF → прикрепить к сделке</li>
-          <li>Отправить клиенту через TG / Max</li>
+          <li>Отправить клиенту на проверку (TG / Max)</li>
+          <li class="highlight">Подписание — в МФЦ, не дистанционно</li>
           <li style="color:#475569">24filldoc сервис не трогается</li>
+        </ul>
+      </div>
+
+      <div class="card c-ntf">
+        <h4>🏛️ Сделка в МФЦ — один визит</h4>
+        <ul>
+          <li>Триггер: этап «Сделка в МФЦ»</li>
+          <li>Клиенту: чек-лист документов (паспорт, СНИЛС…)</li>
+          <li>Напоминание о дате/времени визита за 1 день</li>
+          <li class="highlight">В МФЦ: договор + подача на регистрацию + расчёт</li>
+          <li>После визита → этап «Успех»</li>
         </ul>
       </div>
 
@@ -759,7 +771,8 @@ body {
         <div class="phase-tag" style="background:#3b1200;color:#fb923c;border:1px solid #92400e">ФАЗА 3 — Полная автоматизация · 1–2 нед.</div>
         <h4>Сделка и аналитика</h4>
         <ul>
-          <li>24filldoc: ПДКП (Бронь) + ДКП (Договор)</li>
+          <li>24filldoc: ДКП на этапе «Оформление документов»</li>
+          <li>Таймер брони 2 дня + чек-лист МФЦ</li>
           <li>Еженедельный TG-отчёт по 4 метрикам</li>
           <li>Сезонная реактивация (APScheduler март)</li>
           <li>Реактивация +30 дней</li>
@@ -923,8 +936,9 @@ body {
           POST /webhook/amo-events<br>
           leads[status]: смена этапа → триггер автоматизации<br>
           Этап «Показ назначен» → confirm + маршрут<br>
-          Этап «Бронь» → 24filldoc ПДКП<br>
-          Этап «Договор» → 24filldoc ДКП
+          Этап «Бронь» → таймер 2 дня + сообщение клиенту<br>
+          Этап «Оформление документов» → 24filldoc ДКП<br>
+          Этап «Сделка в МФЦ» → чек-лист + напоминание
         </div>
       </div>
 
@@ -958,12 +972,12 @@ body {
 
       <div class="d-item">
         <div class="d-label">Воронка</div>
-        <div class="d-val"><b>v1:</b> «Взят в работу», «КП» как отдельные этапы<br><b>v2:</b> «Показ состоялся» — центральный этап</div>
+        <div class="d-val"><b>v1:</b> «Взят в работу», «КП», «Оплата» раздельно<br><b>v2:</b> Показ → Бронь 2 дня → Документы → МФЦ одним визитом</div>
       </div>
 
       <div class="d-item">
         <div class="d-label">24filldoc</div>
-        <div class="d-val"><b>v1:</b> 1 триггер — Договор<br><b>v2:</b> 2 триггера — Бронь (ПДКП) + Договор (ДКП)</div>
+        <div class="d-val"><b>v1:</b> Триггер на этапе «Договор»<br><b>v2:</b> Триггер «Оформление документов» — ДКП готов до визита в МФЦ</div>
       </div>
 
       <div class="d-item">
