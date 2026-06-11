@@ -273,11 +273,64 @@ body {
     </div>
   </div>
 
+  <!-- ═══════════════ СЛОЙ 0 — ТОЧКИ ВХОДА В МЕССЕНДЖЕРЫ ════════════════ -->
+  <div class="layer-block">
+    <div class="layer-label">
+      <div class="dot" style="background:#a3e635"></div>
+      <div class="text">Слой 0 — Точки входа в Telegram / Max (клиент начинает писать сам)</div>
+    </div>
+    <div class="cards">
+
+      <div class="card c-src">
+        <h4>🌐 Кнопки на лендинге</h4>
+        <ul>
+          <li>«Написать в Telegram» / «Написать в Max»</li>
+          <li>Deep-link: ?start=lp</li>
+          <li class="highlight">+ кнопка под инфографикой «как добраться»</li>
+          <li>Бесплатно · 1 час работы</li>
+        </ul>
+      </div>
+
+      <div class="card c-src">
+        <h4>🏠 Ссылка в Avito-объявлениях</h4>
+        <ul>
+          <li>В тексте каждого объявления</li>
+          <li>Deep-link: ?start=avito</li>
+          <li>Обход комиссии Avito за звонки</li>
+          <li>Бесплатно</li>
+        </ul>
+      </div>
+
+      <div class="card c-src">
+        <h4>📍 QR-код на участке</h4>
+        <ul>
+          <li class="highlight">Табличка у въезда / на участках</li>
+          <li>«Понравилось? Сканируй — забронируй»</li>
+          <li>Deep-link: ?start=qr</li>
+          <li>Ловит самоходов без оператора</li>
+        </ul>
+      </div>
+
+      <div class="card c-src">
+        <h4>📢 Канал + реклама</h4>
+        <ul>
+          <li>TG-канал «Крона Парк»: посты об участках</li>
+          <li>Кнопка «Написать» под каждым постом</li>
+          <li>Telegram Ads / VK Реклама → прямо в бота</li>
+          <li>Deep-link: ?start=channel / ?start=ads</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="arrow"><div class="arrow-line"></div><div class="arrow-head"></div></div>
+
   <!-- ═══════════════ СЛОЙ 1 — ИСТОЧНИКИ ════════════════ -->
   <div class="layer-block">
     <div class="layer-label">
       <div class="dot" style="background:#4ade80"></div>
-      <div class="text">Слой 1 — Источники лидов (4 подтверждённых канала)</div>
+      <div class="text">Слой 1 — Источники лидов (6 каналов: 4 текущих + Telegram и Max как новые)</div>
     </div>
     <div class="cards">
 
@@ -314,14 +367,26 @@ body {
         </ul>
       </div>
 
-      <div class="card c-src">
-        <h4>💬 Telegram / Max</h4>
+      <div class="card c-src" style="border-color:#4ade80;border-width:2px">
+        <h4>💬 Telegram-бот <span class="solo-tag">НОВЫЙ КАНАЛ</span></h4>
         <ul>
-          <li>Telegram-бот → webhook → /webhook/v2</li>
-          <li>Max (VK) → webhook → /webhook/v2</li>
-          <li>chat_id сохраняется для ответа</li>
-          <li class="highlight">Авто-ответ через тот же канал</li>
-          <li>Сохранение диалога в примечание</li>
+          <li class="highlight">@KronaParkBot — клиенты пишут сами</li>
+          <li class="highlight">Deep-link: t.me/...?start={источник}</li>
+          <li>/start → кнопки: Показ / Цены / Маршрут</li>
+          <li>Кнопка «Поделиться номером» (request_contact)</li>
+          <li>Лид создаётся сразу по chat_id, без телефона</li>
+          <li>Webhook → /webhook/v2</li>
+        </ul>
+      </div>
+
+      <div class="card c-src" style="border-color:#4ade80;border-width:2px">
+        <h4>📨 Max-бот <span class="solo-tag">НОВЫЙ КАНАЛ</span></h4>
+        <ul>
+          <li class="highlight">Чат-бот через Bot API Max</li>
+          <li class="highlight">Deep-link с меткой источника</li>
+          <li>Та же логика кнопок, что в Telegram</li>
+          <li>user_id сохраняется для ответа</li>
+          <li>Webhook → /webhook/v2</li>
         </ul>
       </div>
 
@@ -376,11 +441,12 @@ body {
         <h4>🔄 Бессрочная дедупликация <span class="solo-tag">v2</span></h4>
         <ul>
           <li class="highlight">Поиск по телефону — без временного окна</li>
+          <li class="highlight">Лид без телефона → дедуп по chat_id (TG/Max)</li>
           <li>Контакт найден → обновить, не создавать</li>
           <li>Счётчик касаний + дата последнего</li>
           <li>Открытая сделка → добавить примечание</li>
           <li>Закрытая сделка → создать новую</li>
-          <li>История всех источников сохраняется</li>
+          <li>Телефон появился позже → merge по chat_id</li>
         </ul>
       </div>
 
@@ -757,6 +823,8 @@ body {
         <div class="phase-tag" style="background:#0c1f4a;color:#60a5fa;border:1px solid #1e3a8a">ФАЗА 2 — Автоматизация · 3–5 дней</div>
         <h4>Показ и follow-up</h4>
         <ul>
+          <li>Запуск @KronaParkBot + бот Max (deep-links)</li>
+          <li>Точки входа: кнопки LP, ссылки в Avito, QR</li>
           <li>Бессрочная дедупликация (SQLite)</li>
           <li>Само-напоминания оператору (+15м/+1ч/+4ч)</li>
           <li>Авто-подтверждение показа + маршрут</li>
@@ -847,6 +915,96 @@ body {
           POST vk.com/method/messages.send<br>
           peer_id: user_id из события<br>
           Токен сообщества VK / Max API
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Боты TG/Max -->
+  <div class="detail-block">
+    <h3>🤖 Боты Telegram / Max — сценарий приёма клиента (новые входящие каналы)</h3>
+    <div class="detail-grid">
+
+      <div class="d-item">
+        <div class="d-label">Шаг 1 — Клик по deep-link</div>
+        <div class="d-val">
+          t.me/KronaParkBot?start=<b>avito</b><br>
+          t.me/KronaParkBot?start=<b>lp</b><br>
+          t.me/KronaParkBot?start=<b>qr</b><br>
+          Параметр start = источник → пишется в АМО.<br>
+          UTM-аналитика работает и для мессенджеров.
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 2 — Приветствие + меню</div>
+        <div class="d-val">
+          «Здравствуйте! Я помощник по участкам Крона Парк»<br>
+          Кнопки:<br>
+          [📍 Записаться на показ]<br>
+          [💰 Цены и свободные участки]<br>
+          [🗺️ Как добраться]<br>
+          [📞 Позвоните мне]
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 3 — Лид создаётся сразу</div>
+        <div class="d-val">
+          Хаб создаёт лид по <b>chat_id</b> — телефон не нужен.<br>
+          Источник = параметру start.<br>
+          Даже если клиент молчит — диалог не потерян,<br>
+          оператор может написать первым через бота.
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Шаг 4 — Запрос телефона</div>
+        <div class="d-val">
+          Кнопка «Поделиться номером» (request_contact)<br>
+          после выбора любого пункта меню.<br>
+          Телефон получен → merge с контактом АМО<br>
+          по бессрочному дедупу.
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Кнопка «Как добраться»</div>
+        <div class="d-val">
+          Бот отправляет инфографику + ссылку на<br>
+          krona-park (страница уже существует).<br>
+          <b>Переиспользование готового актива.</b>
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Кнопка «Записаться на показ»</div>
+        <div class="d-val">
+          Бот: «Когда удобно? [Сб] [Вс] [Будни вечером]»<br>
+          → выбор → телефон → лид сразу на этапе<br>
+          <b>«Показ назначен»</b> (минуя квалификацию) +<br>
+          TG-уведомление оператору: согласовать время.
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Max — та же логика</div>
+        <div class="d-val">
+          Чат-бот через Bot API Max.<br>
+          Идентификатор: user_id (аналог chat_id).<br>
+          Одна кодовая база обработчика в Hub-Solo,<br>
+          два адаптера каналов (TG / Max).
+        </div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">QR на участке — ловит самоходов</div>
+        <div class="d-val">
+          Табличка у въезда и на каждом участке:<br>
+          «Понравился участок? Сканируй — узнай цену<br>
+          и забронируй». Клиент приехал сам, без показа →<br>
+          QR → бот → лид с меткой <b>qr</b> + номер участка.
         </div>
       </div>
 
@@ -993,6 +1151,11 @@ body {
       <div class="d-item">
         <div class="d-label">Аналитика</div>
         <div class="d-val"><b>v1:</b> 12+ метрик, KPI команды, дашборды<br><b>v2:</b> 4 метрики рычага, TG-отчёт каждый понедельник</div>
+      </div>
+
+      <div class="d-item">
+        <div class="d-label">Telegram / Max как входящие</div>
+        <div class="d-val"><b>v1:</b> Не задействованы — клиент не мог написать сам<br><b>v2:</b> Боты + deep-links + точки входа (LP, Avito, QR, канал)</div>
       </div>
 
       <div class="d-item">
